@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ce419dba5d934cb69da060581e011a84" Name="Diagram1">
+        <EntityTypeShape EntityType="SchoolModel.Client" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.ClientService" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.ClientsTag" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Employee" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Good" Width="1.5" PointX="0.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Service" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.ServiceGood" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.ServiceRecord" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.TagClient" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SchoolModel.Visit" Width="1.5" PointX="3" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="SchoolModel.FK__ClientSer__Clien__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_ClientsTag_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_ServiceRecord_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_Visit_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_ClientService_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_ClientsTag_TagClient" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_ServiceGood_Good" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_ServiceGood_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="SchoolModel.FK_ServiceRecord_Service" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
