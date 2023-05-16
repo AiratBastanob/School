@@ -21,13 +21,39 @@ namespace School
     {
         ClientService _currentRecord = new ClientService();
         SchoolEntities dbmodel = new SchoolEntities();
-        public Zapis()
+        private Service service = new Service();
+        public Zapis(Service Getservice)
         {
             InitializeComponent();
+            service = Getservice;
+            NameTextBox.Text = service.Name;
+            DurationTextBox.Text = service.Duration;    
+            LoadCombpBox();
+        }
+
+        private void LoadCombpBox()
+        {
+            using (var db = new SchoolEntities())
+            {
+                var Clients = db.Client.ToArray();             
+                foreach (var name in Clients)
+                {
+                    lientServiceTextBox.Items.Add(name);
+                }
+                lientServiceTextBox.SelectedIndex = 0;              
+            }
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
+            StringBuilder errors = new StringBuilder();
+            if (lientServiceTextBox.SelectedIndex == -1)
+                errors.Append("Выберите клиента" + "\n");
+            
+
+            _currentRecord.ClientID = lientServiceTextBox.SelectedIndex + 1;
+            _currentRecord.ClientID = lientServiceTextBox.SelectedIndex + 1;
+            _currentRecord.TimeStart = Convert.ToDateTime(timer.Text);
             if (_currentRecord.TimeStart != null && _currentRecord.ServiceID != 0 && _currentRecord.ClientID != null)
             {
                 dbmodel.ClientService.Add(_currentRecord);
@@ -35,6 +61,13 @@ namespace School
 
             dbmodel.SaveChanges();
             MessageBox.Show("Информация успешно добавлена!", "Окно оповещений");
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

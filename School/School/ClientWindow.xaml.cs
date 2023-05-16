@@ -19,7 +19,7 @@ namespace School
     /// <summary>
     /// Логика взаимодействия для Client.xaml
     /// </summary>
-    public partial class Client : Window
+    public partial class ClientWindow : Window
     {
         SchoolEntities dbmodel = new SchoolEntities();
         Service _currentService = new Service();
@@ -27,7 +27,7 @@ namespace School
         List<Service> Services = new List<Service>();
         private string FilePath { get; set; }
         private byte[] imageData;
-        public Client()
+        public ClientWindow()
         {
             InitializeComponent();
             DataContext = _currentService;
@@ -51,8 +51,6 @@ namespace School
                     }
                 }
             }
-
-            UpdateButton.IsEnabled = true;
             NameTextBox.Text = _currentService.Name;
             CostServiceTextBox.Text = Convert.ToString(_currentService.Cost);
             DurationTextBox.Text = _currentService.Duration;
@@ -67,64 +65,6 @@ namespace School
                 ServicePhotoImage.Source = (ImageSource)bitmap;
             }
         }
-
-        private void UpdateButton_Click(object sender, RoutedEventArgs e)
-        {
-            bool allright = false;
-            Service item = DataGridService.SelectedItem as Service;
-            foreach (Service service in dbmodel.Service)
-            {
-                if (service.ID == item.ID)
-                {
-                    _currentService = service;
-                    break;
-                }
-            }
-            StringBuilder errors = new StringBuilder();
-            _currentService.Name = NameTextBox.Text;
-            _currentService.Cost = Convert.ToInt32(CostServiceTextBox.Text);
-            _currentService.Duration = DurationTextBox.Text;
-            _currentService.Discount = Convert.ToInt32(MaxDiscountTextBox.Text);
-
-            if (_currentService.Name != null && _currentService.Cost != 0 && _currentService.Duration != null && _currentService.Discount != null)
-                allright = true;
-            if (allright == true)
-            {
-                try
-                {
-                    dbmodel.SaveChanges();
-                    MessageBox.Show("Информация успешно изменена!", "Окно оповещений");
-                    DataGridService.Items.Refresh();
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
-            }
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-            var serviceForDeleting = DataGridService.SelectedItems.Cast<Service>().ToList();
-
-            if (MessageBox.Show($"Вы точно хотите удалить следующие {serviceForDeleting.Count} элементов?", "Внимание!",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    dbmodel.Service.RemoveRange(serviceForDeleting);
-                    dbmodel.SaveChanges();
-                    MessageBox.Show("Данные удалены!", "Окно оповещений");
-                    DataGridService.ItemsSource = dbmodel.Service.ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
-            }
-        }
-        
 
         private void LoadComboBox1()
         {
@@ -223,7 +163,11 @@ namespace School
             }
             LoadComponent(true);
         }
-        
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
 
         private void PriceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -247,5 +191,5 @@ namespace School
         }
     }
 }
-    
+
 

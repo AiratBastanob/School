@@ -1,4 +1,4 @@
-﻿<Window x:Class="School.Client"
+﻿<Window x:Class="School.ClientWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -18,7 +18,6 @@
             <RowDefinition Height="250"></RowDefinition>
         </Grid.RowDefinitions>
         <WrapPanel Background="#B5D5CA" Grid.ColumnSpan="2">
-            <Button x:Name="Запись" Content="Вернуться назад" Click="ExitButton_Click"></Button>
             <ComboBox Name="DiscountComboBox" Width="160" SelectionChanged="DiscountComboBox_SelectionChanged"/>
             <ComboBox Name="PriceComboBox" Width="160" SelectionChanged="PriceComboBox_SelectionChanged"/>
             <Label Content="Введите название"/>
@@ -75,12 +74,5 @@
             </StackPanel>
         </Grid>
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" Background="#E0A9AF"></WrapPanel>
-        <StackPanel Grid.Row="3" Grid.Column="1">
-            <StackPanel Grid.Row="3" Grid.Column="1">
-                <Button x:Name="UpdateButton" Content="Редактировать" Width="120" Click="UpdateButton_Click" IsEnabled="False"/>
-                <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Width="120"/>
-                <Button x:Name="AddButton" Content="Добавить" Click="AddButton_Click" Width="120"/>
-            </StackPanel>
-        </StackPanel>
     </Grid>
 </Window>

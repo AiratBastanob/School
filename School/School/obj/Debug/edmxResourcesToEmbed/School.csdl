@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SchoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="IDClient" />
+    </Key>
+    <Property Name="IDClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateFirstVisit" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Photo" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ClientService" Relationship="Self.FK__ClientSer__Clien__286302EC" FromRole="Client" ToRole="ClientService" />
+    <NavigationProperty Name="ClientsTag" Relationship="Self.FK_ClientsTag_Client" FromRole="Client" ToRole="ClientsTag" />
+    <NavigationProperty Name="ServiceRecord" Relationship="Self.FK_ServiceRecord_Client" FromRole="Client" ToRole="ServiceRecord" />
+    <NavigationProperty Name="Visit" Relationship="Self.FK_Visit_Client" FromRole="Client" ToRole="Visit" />
+  </EntityType>
+  <EntityType Name="ClientService">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceID" Type="Int32" />
+    <Property Name="TimeStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ClientID" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="Self.FK__ClientSer__Clien__286302EC" FromRole="ClientService" ToRole="Client" />
+    <NavigationProperty Name="Service" Relationship="Self.FK_ClientService_Service" FromRole="ClientService" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="ClientsTag">
+    <Key>
+      <PropertyRef Name="IdClientTag" />
+    </Key>
+    <Property Name="IdClientTag" Type="Int32" Nullable="false" />
+    <Property Name="IDClient" Type="Int32" />
+    <Property Name="IDTag" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_ClientsTag_Client" FromRole="ClientsTag" ToRole="Client" />
+    <NavigationProperty Name="TagClient" Relationship="Self.FK_ClientsTag_TagClient" FromRole="ClientsTag" ToRole="TagClient" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="IDEmployee" />
+    </Key>
+    <Property Name="IDEmployee" Type="Int32" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Patronymic" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="SerieNumberPassport" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DepartmentCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="PaymentRatio" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Birthday" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="SpecialistCategory" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Good">
+    <Key>
+      <PropertyRef Name="IDGood" />
+    </Key>
+    <Property Name="IDGood" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Cost" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Characteristics" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Weight" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Width" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Height" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Length" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Manufacturer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="StartDateManufacturer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="MainImageGood" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="ServiceGood" Relationship="Self.FK_ServiceGood_Good" FromRole="Good" ToRole="ServiceGood" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MainImageService" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Duration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cost" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Discount" Type="Int32" />
+    <NavigationProperty Name="ClientService" Relationship="Self.FK_ClientService_Service" FromRole="Service" ToRole="ClientService" />
+    <NavigationProperty Name="ServiceGood" Relationship="Self.FK_ServiceGood_Service" FromRole="Service" ToRole="ServiceGood" />
+    <NavigationProperty Name="ServiceRecord" Relationship="Self.FK_ServiceRecord_Service" FromRole="Service" ToRole="ServiceRecord" />
+  </EntityType>
+  <EntityType Name="ServiceGood">
+    <Key>
+      <PropertyRef Name="IDServiceGood" />
+    </Key>
+    <Property Name="IDServiceGood" Type="Int32" Nullable="false" />
+    <Property Name="IDService" Type="Int32" Nullable="false" />
+    <Property Name="IDGood" Type="Int32" />
+    <NavigationProperty Name="Good" Relationship="Self.FK_ServiceGood_Good" FromRole="ServiceGood" ToRole="Good" />
+    <NavigationProperty Name="Service" Relationship="Self.FK_ServiceGood_Service" FromRole="ServiceGood" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="ServiceRecord">
+    <Key>
+      <PropertyRef Name="IDRecord" />
+    </Key>
+    <Property Name="IDRecord" Type="Int32" Nullable="false" />
+    <Property Name="DateStart" Type="DateTime" Precision="3" />
+    <Property Name="Comment" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IDClient" Type="Int32" />
+    <Property Name="IDService" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_ServiceRecord_Client" FromRole="ServiceRecord" ToRole="Client" />
+    <NavigationProperty Name="Service" Relationship="Self.FK_ServiceRecord_Service" FromRole="ServiceRecord" ToRole="Service" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TagClient">
+    <Key>
+      <PropertyRef Name="IDTag" />
+    </Key>
+    <Property Name="IDTag" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ClientsTag" Relationship="Self.FK_ClientsTag_TagClient" FromRole="TagClient" ToRole="ClientsTag" />
+  </EntityType>
+  <EntityType Name="Visit">
+    <Key>
+      <PropertyRef Name="IDVisit" />
+    </Key>
+    <Property Name="IDVisit" Type="Int32" Nullable="false" />
+    <Property Name="DateVisit" Type="DateTime" Precision="3" />
+    <Property Name="IDClient" Type="Int32" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Visit_Client" FromRole="Visit" ToRole="Client" />
+  </EntityType>
+  <Association Name="FK__ClientSer__Clien__286302EC">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="ClientService" Type="Self.ClientService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="IDClient" />
+      </Principal>
+      <Dependent Role="ClientService">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientsTag_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="ClientsTag" Type="Self.ClientsTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="IDClient" />
+      </Principal>
+      <Dependent Role="ClientsTag">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceRecord_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="ServiceRecord" Type="Self.ServiceRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="IDClient" />
+      </Principal>
+      <Dependent Role="ServiceRecord">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visit_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Visit" Type="Self.Visit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="IDClient" />
+      </Principal>
+      <Dependent Role="Visit">
+        <PropertyRef Name="IDClient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientService_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+    <End Role="ClientService" Type="Self.ClientService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ClientService">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClientsTag_TagClient">
+    <End Role="TagClient" Type="Self.TagClient" Multiplicity="0..1" />
+    <End Role="ClientsTag" Type="Self.ClientsTag" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TagClient">
+        <PropertyRef Name="IDTag" />
+      </Principal>
+      <Dependent Role="ClientsTag">
+        <PropertyRef Name="IDTag" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceGood_Good">
+    <End Role="Good" Type="Self.Good" Multiplicity="0..1" />
+    <End Role="ServiceGood" Type="Self.ServiceGood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Good">
+        <PropertyRef Name="IDGood" />
+      </Principal>
+      <Dependent Role="ServiceGood">
+        <PropertyRef Name="IDGood" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceGood_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="1" />
+    <End Role="ServiceGood" Type="Self.ServiceGood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServiceGood">
+        <PropertyRef Name="IDService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceRecord_Service">
+    <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+    <End Role="ServiceRecord" Type="Self.ServiceRecord" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ServiceRecord">
+        <PropertyRef Name="IDService" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SchoolEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Client" EntityType="Self.Client" />
+    <EntitySet Name="ClientService" EntityType="Self.ClientService" />
+    <EntitySet Name="ClientsTag" EntityType="Self.ClientsTag" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="Good" EntityType="Self.Good" />
+    <EntitySet Name="Service" EntityType="Self.Service" />
+    <EntitySet Name="ServiceGood" EntityType="Self.ServiceGood" />
+    <EntitySet Name="ServiceRecord" EntityType="Self.ServiceRecord" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TagClient" EntityType="Self.TagClient" />
+    <EntitySet Name="Visit" EntityType="Self.Visit" />
+    <AssociationSet Name="FK__ClientSer__Clien__286302EC" Association="Self.FK__ClientSer__Clien__286302EC">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientService" EntitySet="ClientService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientsTag_Client" Association="Self.FK_ClientsTag_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ClientsTag" EntitySet="ClientsTag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceRecord_Client" Association="Self.FK_ServiceRecord_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="ServiceRecord" EntitySet="ServiceRecord" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visit_Client" Association="Self.FK_Visit_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="Visit" EntitySet="Visit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientService_Service" Association="Self.FK_ClientService_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ClientService" EntitySet="ClientService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClientsTag_TagClient" Association="Self.FK_ClientsTag_TagClient">
+      <End Role="TagClient" EntitySet="TagClient" />
+      <End Role="ClientsTag" EntitySet="ClientsTag" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceGood_Good" Association="Self.FK_ServiceGood_Good">
+      <End Role="Good" EntitySet="Good" />
+      <End Role="ServiceGood" EntitySet="ServiceGood" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceGood_Service" Association="Self.FK_ServiceGood_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ServiceGood" EntitySet="ServiceGood" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceRecord_Service" Association="Self.FK_ServiceRecord_Service">
+      <End Role="Service" EntitySet="Service" />
+      <End Role="ServiceRecord" EntitySet="ServiceRecord" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

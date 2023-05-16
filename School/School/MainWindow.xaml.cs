@@ -56,6 +56,7 @@ namespace School
             }
 
             UpdateButton.IsEnabled = true;
+            MadeZapisButton.IsEnabled = true;
             NameTextBox.Text = _currentService.Name;
             CostServiceTextBox.Text = Convert.ToString(_currentService.Cost);
             DurationTextBox.Text = _currentService.Duration;
@@ -290,6 +291,26 @@ namespace School
                 bitmap.EndInit();
                 ServicePhotoImage.Source = (ImageSource)bitmap;                
             }
+        }
+
+        private void MadeZapisButton_Click(object sender, RoutedEventArgs e)
+        {
+            Zapis zapis = new Zapis(_currentService);
+            zapis.Show();
+        }
+
+        private void Near_Click(object sender, RoutedEventArgs e)
+        {
+            NearZapis nearZapis = new NearZapis();
+            nearZapis.Show();
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var currentServiceName = dbmodel.Service.ToList();
+            currentServiceName = currentServiceName.Where(p => p.Name.ToLower().Contains(SearchTextBox.Text.ToLower()) || p.Description.ToLower().Contains(SearchTextBox.Text.ToLower())).ToList();
+            DataGridService.ItemsSource = currentServiceName.OrderBy(p => p.Name).ToList();
+            LoadComponent(true);
         }
 
         private void PriceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

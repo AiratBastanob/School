@@ -18,7 +18,7 @@
             <RowDefinition Height="250"></RowDefinition>
         </Grid.RowDefinitions>
         <WrapPanel Background="#B5D5CA" Grid.ColumnSpan="2">
-            <Button x:Name="Запись" Content="Вернуться назад" Click="ExitButton_Click"></Button>
+            <Button x:Name="Near" Content="Ближайшие записи" Click="Near_Click"></Button>
             <ComboBox Name="DiscountComboBox" Width="160" SelectionChanged="DiscountComboBox_SelectionChanged"/>
             <ComboBox Name="PriceComboBox" Width="160" SelectionChanged="PriceComboBox_SelectionChanged"/>
             <Label Content="Введите название"/>
@@ -77,8 +77,10 @@
         <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" Background="#E0A9AF"></WrapPanel>
         <StackPanel Grid.Row="3" Grid.Column="1">
             <StackPanel Grid.Row="3" Grid.Column="1">
-                <Button x:Name="UpdateButton" Content="Добавить" Width="120" Click="UpdateButton_Click" IsEnabled="False"/>
-                <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Width="120"/>               
+                <Button x:Name="UpdateButton" Content="Редактировать" Width="120" Click="UpdateButton_Click" IsEnabled="False"/>
+                <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Width="120"/>
+                <Button x:Name="AddButton" Content="Добавить" Click="AddButton_Click" Width="120"/>
+                <Button x:Name="MadeZapisButton" Content="Записать пользователя" Click="MadeZapisButton_Click" Width="130" IsEnabled="False"/>
             </StackPanel>
         </StackPanel>
     </Grid>
